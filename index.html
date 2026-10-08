@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formar e investigar la DPI</title>
+<meta name="description" content="Portal que integra dos formaciones sobre la competencia genérica UTPL Desarrollo Personal Integral: Competencias Humanas para el Futuro (formarla) y Evidencia trazable (investigarla).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: portada con el modelo de la persona (3 niveles × 4 ámbitos) como imagen central; dos "puertas" de acceso;
+   comparación; puentes entre cursos; orientador "¿por dónde empiezo?".
+   Identidad: azul rey de CHF (formar) + tinta y resaltador del curso de investigación (investigar), sobre papel cuadriculado. */
+:root{
+  --paper:#F7F9FD; --grid:rgba(36,71,160,.07); --surface:#FFFFFF; --sunk:#EEF2FA; --ink:#17213A; --ink-2:#4E5A75; --rule:#D8DFEC;
+  --form:#2447A0; --form-soft:#E4EAF8; --on-form:#FFFFFF;
+  --inv:#16243A; --mark:#FFE073; --mark-soft:#FFF5CC; --mark-ink:#4A3700;
+  --ring1:#C9D5F2; --ring2:#93ABE6; --ring3:#2447A0;
+  --f-display:"Young Serif", Georgia, "Times New Roman", serif;
+  --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:12px; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0E1424; --grid:rgba(143,170,235,.07); --surface:#151D31; --sunk:#1A2440; --ink:#E8EDF7; --ink-2:#A7B3CB; --rule:#2B3756;
+  --form:#9DB4F0; --form-soft:#1E2B4D; --on-form:#0E1424;
+  --inv:#E8EDF7; --mark:#E9C64A; --mark-soft:#3A3217; --mark-ink:#1A1400;
+  --ring1:#22305A; --ring2:#3A5196; --ring3:#9DB4F0; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --paper:#0E1424; --grid:rgba(143,170,235,.07); --surface:#151D31; --sunk:#1A2440; --ink:#E8EDF7; --ink-2:#A7B3CB; --rule:#2B3756;
+  --form:#9DB4F0; --form-soft:#1E2B4D; --on-form:#0E1424;
+  --inv:#E8EDF7; --mark:#E9C64A; --mark-soft:#3A3217; --mark-ink:#1A1400;
+  --ring1:#22305A; --ring2:#3A5196; --ring3:#9DB4F0; color-scheme:dark; }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important} }
+body{margin:0;color:var(--ink);font:400 1.02rem/1.6 var(--f-body);
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:max(16px,4vw)}
+a{color:var(--form)}
+:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.12;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,5.4vw,3.9rem);color:var(--form)}
+h2{font-size:clamp(1.6rem,3.2vw,2.3rem)} h3{font-size:1.25rem}
+p{margin:0;max-width:64ch} ul{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}
+.eyebrow{font:700 .74rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.muted{color:var(--ink-2)}
+.mono{font-family:var(--f-mono);font-size:.86em}
+.mark{background:linear-gradient(transparent 12%,var(--mark) 12%,var(--mark) 88%,transparent 88%);color:var(--mark-ink);padding:0 .15em}
+.cite{font-family:var(--f-mono);font-size:.8em;color:var(--ink-2)}
+button{font:inherit;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.15rem;border-radius:999px;font-weight:700;text-decoration:none;border:0}
+.btn.form{background:var(--form);color:var(--on-form)}
+.btn.inv{background:var(--mark);color:var(--mark-ink);box-shadow:inset 0 0 0 1.5px var(--mark-ink)}
+.btn:hover{filter:brightness(1.07)}
+.chip{display:inline-flex;align-items:center;gap:.35rem;font:700 .76rem var(--f-body);padding:.25rem .65rem;border-radius:999px}
+.chip.form{background:var(--form-soft);color:var(--form)}
+.chip.inv{background:var(--mark);color:var(--mark-ink)}
+
+/* barra */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:.65rem}
+.brand{font-family:var(--f-display);font-size:1.15rem;text-decoration:none;color:var(--ink)}
+.brand b{color:var(--form);font-weight:400}
+.top nav{display:flex;gap:.2rem;flex-wrap:wrap}
+.top nav a{font-size:.9rem;font-weight:500;text-decoration:none;color:var(--ink-2);padding:.3rem .65rem;border-radius:999px}
+.top nav a:hover{background:var(--sunk);color:var(--ink)}
+
+/* portada */
+.hero{padding-block:clamp(2rem,6vw,4.5rem)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.hero-copy{display:grid;gap:1.1rem;min-width:0}
+.lede{font-size:1.18rem;color:var(--ink-2)}
+.def{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:1rem 1.2rem;display:grid;gap:.4rem;max-width:64ch}
+.def p{font-family:var(--f-display);font-size:1.12rem;line-height:1.45}
+.model{background:var(--surface);border:1px solid var(--rule);border-radius:20px;padding:1rem;display:grid;gap:.6rem;min-width:0}
+.model svg{width:100%;height:auto;display:block}
+.model svg .seg{cursor:pointer;transition:opacity .2s}
+.model svg .seg:hover,.model svg .seg.on{opacity:.82}
+.model-info{min-height:5.2rem;background:var(--sunk);border-radius:10px;padding:.7rem .85rem;font-size:.92rem;display:grid;gap:.25rem}
+.model-info b{font-family:var(--f-display);font-weight:400;font-size:1.05rem}
+
+section.block{padding-block:clamp(2.5rem,6vw,4.5rem);border-top:1px solid var(--rule)}
+section.block > .wrap{display:grid;gap:1.5rem}
+.head{display:grid;gap:.5rem}
+
+/* dos enfoques */
+.lenses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem}
+.lens{background:var(--surface);border:1px solid var(--rule);border-radius:18px;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto}
+.lens-top{padding:1.3rem 1.4rem;display:grid;gap:.55rem}
+.lens.form .lens-top{background:var(--form);color:var(--on-form)}
+.lens.form .lens-top .eyebrow{color:var(--on-form);opacity:.85}
+.lens.inv .lens-top{background:var(--mark);color:var(--mark-ink)}
+.lens.inv .lens-top .eyebrow{color:var(--mark-ink);opacity:.8}
+.lens-top h3{font-size:1.7rem}
+.lens-top .q{font-size:1rem;opacity:.95}
+.lens-body{padding:1.2rem 1.4rem;display:grid;gap:.9rem;align-content:start}
+.lens-body dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.4rem 1rem;margin:0;font-size:.94rem}
+.lens-body dt{color:var(--ink-2);font-weight:600}
+.lens-body dd{margin:0}
+.lens-foot{padding:1rem 1.4rem 1.3rem;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between}
+.lens-art{width:72px;height:72px;flex:none}
+.lens-title{display:flex;gap:1rem;align-items:center}
+
+/* comparación */
+.compare{display:grid;gap:.6rem}
+.crow{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr) minmax(0,1fr);gap:.6rem;align-items:stretch}
+.crow > div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:.7rem .85rem;font-size:.94rem}
+.crow .k{background:transparent;border:0;font-weight:700;display:flex;align-items:center;padding-left:0}
+.crow .f{border-left:4px solid var(--form)}
+.crow .i{border-left:4px solid var(--mark)}
+.crow.headrow > div{background:transparent;border:0;padding-block:0}
+
+/* puentes */
+.bridges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.bridge{background:var(--surface);border:1px solid var(--rule);border-radius:16px;padding:1.1rem 1.2rem;display:grid;gap:.7rem;align-content:start}
+.bridge .pair{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:.4rem;align-items:center;font-size:.86rem}
+.bridge .pair span{border-radius:8px;padding:.45rem .55rem}
+.bridge .pair .f{background:var(--form-soft);color:var(--form);font-weight:600}
+.bridge .pair .i{background:var(--mark-soft);color:var(--ink);font-weight:600}
+.bridge .arrow{font-family:var(--f-mono);color:var(--ink-2)}
+.finding{background:var(--sunk);border-radius:16px;padding:1.2rem 1.4rem;display:grid;gap:.6rem}
+
+/* orientador */
+.quiz{background:var(--surface);border:1px solid var(--rule);border-radius:18px;padding:1.3rem 1.4rem;display:grid;gap:1rem}
+.qrow{display:grid;gap:.5rem}
+.qrow .opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.qopt{border:1.5px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:999px;padding:.45rem .9rem;font-weight:500}
+.qopt[aria-pressed="true"]{border-color:var(--form);background:var(--form-soft);color:var(--form)}
+.result{border-radius:14px;padding:1rem 1.2rem;background:var(--sunk);display:grid;gap:.5rem;min-height:4.5rem}
+.result.form{background:var(--form-soft)} .result.inv{background:var(--mark-soft)}
+
+/* puertas finales */
+.doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.door{display:grid;gap:.5rem;padding:1.5rem;border-radius:18px;text-decoration:none;color:inherit;border:1px solid var(--rule);background:var(--surface);transition:transform .15s, box-shadow .15s}
+.door:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(23,33,58,.55)}
+.door.form{border-top:6px solid var(--form)} .door.inv{border-top:6px solid var(--mark)}
+.door h3{font-size:1.5rem}
+.door .go{font-weight:700;color:var(--form)}
+.door.inv .go{color:var(--ink)}
+.door .url{font-family:var(--f-mono);font-size:.78rem;color:var(--ink-2);overflow-wrap:anywhere}
+
+footer{border-top:1px solid var(--rule);padding-block:2rem 3rem;font-size:.86rem;color:var(--ink-2)}
+footer .wrap{display:grid;gap:.35rem}
+
+@media (max-width:900px){
+  .top nav{display:none}
+  .hero .wrap,.lenses,.doors{grid-template-columns:minmax(0,1fr)}
+  .bridges{grid-template-columns:minmax(0,1fr)}
+  .crow{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .crow .k{grid-column:1 / -1;padding-bottom:0}
+  .crow.headrow .k{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="#inicio">Formar e investigar la <b>DPI</b></a>
+  <nav aria-label="Secciones"><a href="#enfoques">Enfoques</a><a href="#diferencias">Diferencias</a><a href="#puentes">Cómo se conectan</a><a href="#empezar">¿Por dónde empiezo?</a><a href="#acceso">Acceso</a></nav>
+</div></header>
+
+<section class="hero" id="inicio"><div class="wrap">
+  <div class="hero-copy">
+    <span class="eyebrow">UTPL · Formación docente 2026</span>
+    <h1>Formar e investigar el Desarrollo Personal Integral</h1>
+    <p class="lede">Dos formaciones sobre la misma competencia genérica de la UTPL. Una enseña a <strong>desarrollarla</strong> en el aula; la otra enseña a <span class="mark">investigar</span> cómo la estudia la literatura científica.</p>
+    <div class="def">
+      <span class="eyebrow">Definición institucional</span>
+      <p>«Analizar los niveles, ámbitos y dimensiones del ser humano desde una visión integral para comprenderse y gestionarse, aplicando estrategias orientadas al crecimiento personal, con generosidad y responsabilidad.»</p>
+      <span class="cite">Modelo educativo y pedagógico de la UTPL (2026), p. 45</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:.6rem"><a class="btn form" href="#acceso" data-link="chf">Competencias Humanas para el Futuro</a><a class="btn inv" href="#acceso" data-link="inv">Evidencia trazable</a></div>
+  </div>
+  <figure class="model" style="margin:0">
+    <span class="eyebrow">La persona en el modelo UTPL · toque una parte</span>
+    <svg viewBox="0 0 360 360" role="img" aria-label="Tres niveles concéntricos (físico, psicológico, espiritual) y cuatro ámbitos de relación (personal, social, sacral, cósmico)">
+      <g id="rings"></g>
+      <g font-family="Figtree, sans-serif" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="middle">
+        <text x="180" y="18">personal</text><text x="346" y="184" transform="rotate(90 346 184)">social</text>
+        <text x="180" y="352">cósmico</text><text x="14" y="184" transform="rotate(-90 14 184)">sacral</text>
+      </g>
+    </svg>
+    <div class="model-info" id="modelInfo" aria-live="polite"><b>3 niveles · 4 ámbitos</b><span>Toquen un anillo o un cuadrante para ver qué estudia cada formación.</span></div>
+    <figcaption class="cite">Niveles y ámbitos según el Modelo educativo UTPL (2026), p. 14. Cobertura en la literatura según la síntesis v1.1.</figcaption>
+  </figure>
+</div></section>
+
+<section class="block" id="enfoques"><div class="wrap">
+  <div class="head"><span class="eyebrow">Paso 1 · El enfoque</span><h2>Dos formaciones, una competencia</h2>
+    <p class="muted">Ambas parten de la misma definición. Cambia la pregunta que intentan responder.</p></div>
+  <div class="lenses">
+    <article class="lens form">
+      <div class="lens-top">
+        <div class="lens-title">
+          <svg class="lens-art" viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="34" fill="var(--on-form)" opacity=".15"/><path d="M36 58V32" stroke="var(--on-form)" stroke-width="4" stroke-linecap="round"/><path d="M36 38c-12 0-18-8-18-18 12 0 18 8 18 18zM36 34c0-11 6-17 17-17 0 11-6 17-17 17z" fill="var(--on-form)"/><path d="M22 58h28" stroke="var(--on-form)" stroke-width="4" stroke-linecap="round"/></svg>
+          <div><span class="eyebrow">Formar la competencia</span><h3>Competencias Humanas para el Futuro</h3></div>
+        </div>
+        <p class="q">¿Cómo desarrollo la DPI y las demás competencias genéricas en mi asignatura?</p>
+      </div>
+      <div class="lens-body">
+        <dl>
+          <dt>Duración</dt><dd>4 unidades, del 8 al 12 de septiembre de 2026</dd>
+          <dt>Recorrido</dt><dd>Modelo educativo UTPL → competencias humanas y DPI → estrategias y rúbricas → propuesta integradora</dd>
+          <dt>Producto</dt><dd>Microproyecto docente integrador: actividad, metodología activa, evidencias y rúbrica</dd>
+          <dt>Evaluación</dt><dd>Microproyecto 40 % · examen 20 % · foro 20 % · taller de rúbricas 20 %</dd>
+        </dl>
+      </div>
+      <div class="lens-foot"><span class="chip form">Mirada pedagógica</span><a class="btn form" data-link="chf" href="#">Entrar a CHF →</a></div>
+    </article>
+    <article class="lens inv">
+      <div class="lens-top">
+        <div class="lens-title">
+          <svg class="lens-art" viewBox="0 0 72 72" aria-hidden="true"><rect x="10" y="10" width="36" height="46" rx="4" fill="var(--surface)" stroke="var(--mark-ink)" stroke-width="2.5"/><rect x="15" y="24" width="26" height="7" fill="var(--mark-ink)" opacity=".35"/><path d="M16 18h22M16 38h22M16 46h14" stroke="var(--mark-ink)" stroke-width="2.5"/><circle cx="48" cy="46" r="12" fill="none" stroke="var(--mark-ink)" stroke-width="4"/><path d="M57 55l9 9" stroke="var(--mark-ink)" stroke-width="5" stroke-linecap="round"/></svg>
+          <div><span class="eyebrow">Investigar la competencia</span><h3>Evidencia trazable</h3></div>
+        </div>
+        <p class="q">¿Cómo ha abordado la literatura científica la DPI y sus constructos afines en educación superior?</p>
+      </div>
+      <div class="lens-body">
+        <dl>
+          <dt>Duración</dt><dd>5 sesiones, una por etapa</dd>
+          <dt>Recorrido</dt><dd>Incorporar → verificar → pertinencia → extraer → sintetizar</dd>
+          <dt>Producto</dt><dd>Síntesis en la que cada afirmación se rastrea hasta una fuente, una página y un pasaje literal</dd>
+          <dt>Evaluación</dt><dd>Rúbrica «Trazabilidad de la evidencia», 20 puntos; se avanza con 12</dd>
+        </dl>
+      </div>
+      <div class="lens-foot"><span class="chip inv">Mirada investigativa</span><a class="btn inv" data-link="inv" href="#">Entrar a Evidencia trazable →</a></div>
+    </article>
+  </div>
+</div></section>
+
+<section class="block" id="diferencias"><div class="wrap">
+  <div class="head"><span class="eyebrow">Paso 2 · La diferencia</span><h2>En qué se distinguen</h2></div>
+  <div class="compare">
+    <div class="crow headrow"><div class="k"></div><div><span class="chip form">Formar · CHF</span></div><div><span class="chip inv">Investigar · Evidencia trazable</span></div></div>
+    <div class="crow"><div class="k">Propósito</div><div class="f">Integrar la DPI en la práctica docente</div><div class="i">Conocer qué dice la evidencia sobre la DPI</div></div>
+    <div class="crow"><div class="k">Punto de partida</div><div class="f">El modelo educativo y el plan docente de la asignatura</div><div class="i">Una pregunta de investigación y criterios de inclusión</div></div>
+    <div class="crow"><div class="k">Material de trabajo</div><div class="f">Fundamentos, marcos internacionales, taxonomía y rúbricas institucionales</div><div class="i">Artículos y documentos con identificador estable (DOI, ISBN)</div></div>
+    <div class="crow"><div class="k">Rol del participante</div><div class="f">Diseñador de experiencias de aprendizaje</div><div class="i">Revisor que aprueba, corrige o rechaza en pareja</div></div>
+    <div class="crow"><div class="k">Uso de IA</div><div class="f">NotebookLM del modelo educativo como recurso (en construcción)</div><div class="i">El asistente propone en cada etapa; las personas deciden</div></div>
+    <div class="crow"><div class="k">Resultado</div><div class="f">Una actividad integradora lista para el aula</div><div class="i">Una síntesis trazable y un registro reproducible</div></div>
+  </div>
+</div></section>
+
+<section class="block" id="puentes"><div class="wrap">
+  <div class="head"><span class="eyebrow">Paso 3 · Cómo se conectan</span><h2>Lo que una formación le aporta a la otra</h2>
+    <p class="muted">Cursar ambas permite justificar con evidencia lo que se diseña para el aula.</p></div>
+  <div class="bridges">
+    <div class="bridge"><div class="pair"><span class="f">CHF · Unidad 2</span><span class="arrow">↔</span><span class="i">Síntesis §1–3</span></div>
+      <h3>Nombres y marcos</h3><p>La Unidad 2 relaciona la DPI con UNESCO, el Foro Económico Mundial, la OCDE y Tuning. La síntesis muestra con qué otros nombres aparece en la literatura y qué dimensiones se estudian.</p></div>
+    <div class="bridge"><div class="pair"><span class="f">CHF · Unidad 3</span><span class="arrow">↔</span><span class="i">Etapas 3 y 5</span></div>
+      <h3>Rúbricas</h3><p>En CHF se construyen rúbricas para evaluar competencias. En la investigación, una rúbrica decide la pertinencia de cada fuente y otra evalúa la trazabilidad, y se mide el acuerdo entre revisores.</p></div>
+    <div class="bridge"><div class="pair"><span class="f">CHF · Unidad 4</span><span class="arrow">↔</span><span class="i">Síntesis trazable</span></div>
+      <h3>Microproyecto con respaldo</h3><p>La actividad integradora puede citar evidencia rastreable, por ejemplo programas de competencias emocionales en educación superior <span class="cite">[F06, p. 1]</span>, para justificar la metodología elegida.</p></div>
+  </div>
+  <div class="finding">
+    <span class="eyebrow">Hallazgo del piloto que sirve en CHF</span>
+    <p>Ninguna fuente científica revisada usa el término «Desarrollo personal integral». La literatura habla de <em>whole person education</em>, aprendizaje socioemocional, competencias emocionales, planificación del desarrollo personal y bienestar espiritual, y se concentra en el nivel psicológico y en los ámbitos personal y social. Los ámbitos sacral y cósmico son los menos estudiados.</p>
+  </div>
+</div></section>
+
+<section class="block" id="empezar"><div class="wrap">
+  <div class="head"><span class="eyebrow">Orientador</span><h2>¿Por dónde empiezo?</h2><p class="muted">Respondan tres preguntas y les sugerimos una ruta. Pueden cursar ambas, en cualquier orden.</p></div>
+  <div class="quiz" id="quiz"></div>
+</div></section>
+
+<section class="block" id="acceso"><div class="wrap">
+  <div class="head"><span class="eyebrow">Acceso</span><h2>Elijan la formación</h2></div>
+  <div class="doors">
+    <a class="door form" data-link="chf" href="#"><span class="chip form" style="justify-self:start">Formar la competencia</span><h3>Competencias Humanas para el Futuro</h3><p class="muted">Cronograma, recursos, tareas y evaluación del curso.</p><span class="go">Ir al curso →</span><span class="url" data-url="chf"></span></a>
+    <a class="door inv" data-link="inv" href="#"><span class="chip inv" style="justify-self:start">Investigar la competencia</span><h3>Evidencia trazable</h3><p class="muted">Ruta de cinco etapas con prácticas, plantillas y ejemplo resuelto.</p><span class="go">Ir al curso →</span><span class="url" data-url="inv"></span></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>Portal de formación docente · Universidad Técnica Particular de Loja · 2026.</span>
+  <span>Competencias Humanas para el Futuro: docente Dra. Cristina Díaz de la Cruz. Evidencia trazable: adaptación de la guía 08 del curso Vibe Coding CEDIA 2026, autoría de Martha Vanessa Agila Palacios.</span>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  /* ===== Enlaces de los dos cursos: cámbielos aquí si las direcciones cambian ===== */
+  var LINKS = {
+    chf: "https://rodri2265.github.io/UTE-2026/",
+    inv: "investigacion/index.html"
+  };
+  document.querySelectorAll("[data-link]").forEach(function(a){
+    if(a.getAttribute("href")!=="#acceso") { a.href = LINKS[a.dataset.link]; }
+  });
+  document.querySelectorAll("[data-url]").forEach(function(s){ s.textContent = LINKS[s.dataset.url]; });
+
+  /* ===== Modelo de la persona: 3 niveles × 4 ámbitos ===== */
+  var NS="http://www.w3.org/2000/svg", g=document.getElementById("rings"), cx=180, cy=184;
+  var LEVELS=[{k:"físico",r:[40,74],fill:"var(--ring1)"},{k:"psicológico",r:[74,112],fill:"var(--ring2)"},{k:"espiritual",r:[112,150],fill:"var(--ring3)"}];
+  var AMB=[{k:"personal",a0:-135,a1:-45},{k:"social",a0:-45,a1:45},{k:"cósmico",a0:45,a1:135},{k:"sacral",a0:135,a1:225}];
+  var LIT={ "físico":"F10 y F01 (deporte como indicador)", "psicológico":"F04, F06 y F08: el nivel más estudiado", "espiritual":"F09 y F10",
+            "personal":"F04, F08 (autoconciencia) y F09", "social":"F04, F06 y F09", "cósmico":"F09 (dominio ambiental) y F02, como afín débil", "sacral":"solo F09 (dominio trascendental)" };
+  function arc(r0,r1,a0,a1){
+    function p(r,a){ var t=a*Math.PI/180; return [(cx+r*Math.cos(t)).toFixed(2),(cy+r*Math.sin(t)).toFixed(2)]; }
+    var A=p(r1,a0),B=p(r1,a1),C=p(r0,a1),D=p(r0,a0);
+    return "M"+A+" A"+r1+" "+r1+" 0 0 1 "+B+" L"+C+" A"+r0+" "+r0+" 0 0 0 "+D+" Z";
+  }
+  var info=document.getElementById("modelInfo"), segs=[];
+  function select(level, amb){
+    segs.forEach(function(s){ s.el.classList.toggle("on", s.l===level && s.a===amb); });
+    info.innerHTML='<b>Nivel '+level+' · ámbito '+amb+'</b>'+
+      '<span><span class="chip form">Formar</span> se aborda en CHF, Unidad 1 (antropología y humanismo integral) y Unidad 2 (DPI).</span>'+
+      '<span><span class="chip inv">Investigar</span> nivel '+level+': '+LIT[level]+'. Ámbito '+amb+': '+LIT[amb]+'.</span>';
+  }
+  LEVELS.forEach(function(L){ AMB.forEach(function(A){
+    var path=document.createElementNS(NS,"path");
+    path.setAttribute("d",arc(L.r[0],L.r[1],A.a0+1.5,A.a1-1.5)); path.setAttribute("fill",L.fill);
+    path.setAttribute("class","seg"); path.setAttribute("tabindex","0"); path.setAttribute("role","button");
+    path.setAttribute("aria-label","Nivel "+L.k+", ámbito "+A.k);
+    path.addEventListener("click",function(){ select(L.k,A.k); });
+    path.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); select(L.k,A.k); } });
+    g.appendChild(path); segs.push({el:path,l:L.k,a:A.k});
+  }); });
+  var core=document.createElementNS(NS,"circle"); core.setAttribute("cx",cx); core.setAttribute("cy",cy); core.setAttribute("r",38); core.setAttribute("fill","var(--mark)"); g.appendChild(core);
+  var t=document.createElementNS(NS,"text"); t.setAttribute("x",cx); t.setAttribute("y",cy+6); t.setAttribute("text-anchor","middle"); t.setAttribute("font-family","Young Serif, Georgia, serif"); t.setAttribute("font-size","20"); t.setAttribute("fill","var(--mark-ink)"); t.textContent="DPI"; g.appendChild(t);
+  [["físico",57],["psicológico",93],["espiritual",131]].forEach(function(x){
+    var tx=document.createElementNS(NS,"text"); tx.setAttribute("x",cx); tx.setAttribute("y",cy-x[1]+4); tx.setAttribute("text-anchor","middle");
+    tx.setAttribute("font-family","Figtree, sans-serif"); tx.setAttribute("font-size","11"); tx.setAttribute("font-weight","600");
+    tx.setAttribute("fill", x[0]==="espiritual" ? "var(--surface)" : "var(--ink)"); tx.setAttribute("pointer-events","none"); tx.textContent=x[0]; g.appendChild(tx);
+  });
+
+  /* ===== Orientador ===== */
+  var Q=[{q:"¿Qué necesitan ahora?",o:[["Diseñar una actividad para mi asignatura","f"],["Saber qué dice la literatura sobre la DPI","i"]]},
+         {q:"¿Qué producto les sirve más?",o:[["Una actividad con rúbrica para el aula","f"],["Una síntesis con citas rastreables","i"]]},
+         {q:"¿Cómo prefieren trabajar?",o:[["Con casos y metodologías activas","f"],["Revisando fuentes en pareja, paso a paso","i"]]}];
+  var ans=[null,null,null], quiz=document.getElementById("quiz");
+  Q.forEach(function(item,k){
+    var row=document.createElement("div"); row.className="qrow";
+    row.innerHTML='<strong>'+(k+1)+'. '+item.q+'</strong><div class="opts" role="group" aria-label="'+item.q+'"></div>';
+    item.o.forEach(function(o){
+      var b=document.createElement("button"); b.type="button"; b.className="qopt"; b.setAttribute("aria-pressed","false"); b.textContent=o[0];
+      b.addEventListener("click",function(){ ans[k]=o[1]; row.querySelectorAll(".qopt").forEach(function(x){ x.setAttribute("aria-pressed", x===b?"true":"false"); }); result(); });
+      row.querySelector(".opts").appendChild(b);
+    });
+    quiz.appendChild(row);
+  });
+  var res=document.createElement("div"); res.className="result"; res.setAttribute("aria-live","polite"); res.innerHTML='<span class="muted">La sugerencia aparecerá cuando respondan las tres preguntas.</span>'; quiz.appendChild(res);
+  function result(){
+    if(ans.indexOf(null)>-1) return;
+    var f=ans.filter(function(x){return x==="f";}).length, i=3-f, first=f>=i?"chf":"inv";
+    res.className="result "+(first==="chf"?"form":"inv");
+    var name=first==="chf"?"Competencias Humanas para el Futuro":"Evidencia trazable", other=first==="chf"?"Evidencia trazable":"Competencias Humanas para el Futuro";
+    var why=first==="chf"?"Su interés está en llevar la DPI al aula. Después, la investigación les ayudará a respaldar su microproyecto con evidencia.":"Su interés está en la evidencia. Después, CHF les ayudará a convertir lo que encuentren en actividades para el aula.";
+    res.innerHTML='<strong>Empiecen por '+name+'</strong><span>'+why+'</span><div style="display:flex;flex-wrap:wrap;gap:.5rem"><a class="btn '+(first==="chf"?"form":"inv")+'" href="'+LINKS[first]+'">Ir a '+name+'</a><a class="btn '+(first==="chf"?"inv":"form")+'" href="'+LINKS[first==="chf"?"inv":"chf"]+'">Ver '+other+'</a></div>';
+  }
+})();
+</script>
+</body>
+</html>
