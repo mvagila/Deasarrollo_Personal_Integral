@@ -8,68 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
 <style>
-/* Layout: portada con el modelo de la persona (3 niveles × 4 ámbitos) como imagen central; dos "puertas" de acceso;
-   comparación; puentes entre cursos; orientador "¿por dónde empiezo?".
-   Identidad: azul rey de CHF (formar) + tinta y resaltador del curso de investigación (investigar), sobre papel cuadriculado. */
-:root{
-  --paper:#F7F9FD; --grid:rgba(36,71,160,.07); --surface:#FFFFFF; --sunk:#EEF2FA; --ink:#17213A; --ink-2:#4E5A75; --rule:#D8DFEC;
-  --form:#2447A0; --form-soft:#E4EAF8; --on-form:#FFFFFF;
-  --inv:#16243A; --mark:#FFE073; --mark-soft:#FFF5CC; --mark-ink:#4A3700;
-  --ring1:#C9D5F2; --ring2:#93ABE6; --ring3:#2447A0;
-  --f-display:"Young Serif", Georgia, "Times New Roman", serif;
-  --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
-  --r:12px; color-scheme:light;
-}
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --paper:#0E1424; --grid:rgba(143,170,235,.07); --surface:#151D31; --sunk:#1A2440; --ink:#E8EDF7; --ink-2:#A7B3CB; --rule:#2B3756;
-  --form:#9DB4F0; --form-soft:#1E2B4D; --on-form:#0E1424;
-  --inv:#E8EDF7; --mark:#E9C64A; --mark-soft:#3A3217; --mark-ink:#1A1400;
-  --ring1:#22305A; --ring2:#3A5196; --ring3:#9DB4F0; color-scheme:dark; } }
-:root[data-theme="dark"]{
-  --paper:#0E1424; --grid:rgba(143,170,235,.07); --surface:#151D31; --sunk:#1A2440; --ink:#E8EDF7; --ink-2:#A7B3CB; --rule:#2B3756;
-  --form:#9DB4F0; --form-soft:#1E2B4D; --on-form:#0E1424;
-  --inv:#E8EDF7; --mark:#E9C64A; --mark-soft:#3A3217; --mark-ink:#1A1400;
-  --ring1:#22305A; --ring2:#3A5196; --ring3:#9DB4F0; color-scheme:dark; }
-
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important} }
-body{margin:0;color:var(--ink);font:400 1.02rem/1.6 var(--f-body);
-  background-color:var(--paper);
-  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:28px 28px}
-.wrap{max-width:1120px;margin:0 auto;padding-inline:max(16px,4vw)}
-a{color:var(--form)}
-:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
-h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.12;text-wrap:balance;margin:0}
-h1{font-size:clamp(2.2rem,5.4vw,3.9rem);color:var(--form)}
-h2{font-size:clamp(1.6rem,3.2vw,2.3rem)} h3{font-size:1.25rem}
-p{margin:0;max-width:64ch} ul{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}
-.eyebrow{font:700 .74rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-.muted{color:var(--ink-2)}
-.mono{font-family:var(--f-mono);font-size:.86em}
-.mark{background:linear-gradient(transparent 12%,var(--mark) 12%,var(--mark) 88%,transparent 88%);color:var(--mark-ink);padding:0 .15em}
-.cite{font-family:var(--f-mono);font-size:.8em;color:var(--ink-2)}
-button{font:inherit;cursor:pointer}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.15rem;border-radius:999px;font-weight:700;text-decoration:none;border:0}
-.btn.form{background:var(--form);color:var(--on-form)}
-.btn.inv{background:var(--mark);color:var(--mark-ink);box-shadow:inset 0 0 0 1.5px var(--mark-ink)}
-.btn:hover{filter:brightness(1.07)}
-.chip{display:inline-flex;align-items:center;gap:.35rem;font:700 .76rem var(--f-body);padding:.25rem .65rem;border-radius:999px}
-.chip.form{background:var(--form-soft);color:var(--form)}
-.chip.inv{background:var(--mark);color:var(--mark-ink)}
-
-/* barra */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
-.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:.65rem}
-.brand{font-family:var(--f-display);font-size:1.15rem;text-decoration:none;color:var(--ink)}
-.brand b{color:var(--form);font-weight:400}
-.top nav{display:flex;gap:.2rem;flex-wrap:wrap}
-.top nav a{font-size:.9rem;font-weight:500;text-decoration:none;color:var(--ink-2);padding:.3rem .65rem;border-radius:999px}
-.top nav a:hover{background:var(--sunk);color:var(--ink)}
-
 /* portada */
 .hero{padding-block:clamp(2rem,6vw,4.5rem)}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
@@ -144,8 +84,6 @@ section.block > .wrap{display:grid;gap:1.5rem}
 .door.inv .go{color:var(--ink)}
 .door .url{font-family:var(--f-mono);font-size:.78rem;color:var(--ink-2);overflow-wrap:anywhere}
 
-footer{border-top:1px solid var(--rule);padding-block:2rem 3rem;font-size:.86rem;color:var(--ink-2)}
-footer .wrap{display:grid;gap:.35rem}
 
 @media (max-width:900px){
   .top nav{display:none}
@@ -155,13 +93,20 @@ footer .wrap{display:grid;gap:.35rem}
   .crow .k{grid-column:1 / -1;padding-bottom:0}
   .crow.headrow .k{display:none}
 }
+
+/* avance en portada */
+.prog2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.prog2 .card{gap:.55rem}
+.prog2 .row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}
+.prog2 b{font-family:var(--f-display);font-weight:400;font-size:1.6rem;font-variant-numeric:tabular-nums}
+@media (max-width:900px){ .prog2{grid-template-columns:minmax(0,1fr)} }
 </style>
 </head>
 <body>
 
 <header class="top"><div class="wrap">
-  <a class="brand" href="#inicio">Formar e investigar la <b>DPI</b></a>
-  <nav aria-label="Secciones"><a href="#enfoques">Enfoques</a><a href="#diferencias">Diferencias</a><a href="#puentes">Cómo se conectan</a><a href="#empezar">¿Por dónde empiezo?</a><a href="#acceso">Acceso</a></nav>
+  <a class="brand" href="index.html">Formar e investigar la <b>DPI</b></a>
+  <nav aria-label="Sitio"><a href="index.html" aria-current="page">Inicio</a><a href="formacion.html">Formación</a><a class="inv" href="investigacion.html">Investigación</a><a href="avance.html">Mi avance</a><a class="hide-sm" href="docente.html">Docente</a></nav>
 </div></header>
 
 <section class="hero" id="inicio"><div class="wrap">
@@ -268,10 +213,20 @@ footer .wrap{display:grid;gap:.35rem}
   <div class="quiz" id="quiz"></div>
 </div></section>
 
+<section class="block" id="mi-avance"><div class="wrap">
+  <div class="head"><span class="eyebrow">Su recorrido</span><h2>Mi avance en las dos formaciones</h2>
+    <p class="muted">Se guarda solo en este navegador. Para que su docente lo vea, exporte su registro en «Mi avance» y súbalo al aula virtual.</p></div>
+  <div class="prog2">
+    <div class="card"><div class="row"><span class="chip form">Formar · CHF</span><b data-pct="formacion">0 %</b></div><div class="bar lg form"><i data-bar="formacion" style="width:0%"></i></div><span class="muted small" data-last="formacion">Sin actividad todavía</span></div>
+    <div class="card"><div class="row"><span class="chip inv">Investigar · Evidencia trazable</span><b data-pct="investigacion">0 %</b></div><div class="bar lg inv"><i data-bar="investigacion" style="width:0%"></i></div><span class="muted small" data-last="investigacion">Sin actividad todavía</span></div>
+  </div>
+  <div><a class="btn ghost" href="avance.html">Ver y exportar mi avance</a></div>
+</div></section>
+
 <section class="block" id="acceso"><div class="wrap">
   <div class="head"><span class="eyebrow">Acceso</span><h2>Elijan la formación</h2></div>
   <div class="doors">
-    <a class="door form" data-link="chf" href="#"><span class="chip form" style="justify-self:start">Formar la competencia</span><h3>Competencias Humanas para el Futuro</h3><p class="muted">Cronograma, recursos, tareas y evaluación del curso.</p><span class="go">Ir al curso →</span><span class="url" data-url="chf"></span></a>
+    <a class="door form" data-link="chf" href="#"><span class="chip form" style="justify-self:start">Formar la competencia</span><h3>Competencias Humanas para el Futuro</h3><p class="muted">Cuatro unidades, reflexiones, borrador del microproyecto y evaluación.</p><span class="go">Ir al curso →</span><span class="url" data-url="chf"></span></a>
     <a class="door inv" data-link="inv" href="#"><span class="chip inv" style="justify-self:start">Investigar la competencia</span><h3>Evidencia trazable</h3><p class="muted">Ruta de cinco etapas con prácticas, plantillas y ejemplo resuelto.</p><span class="go">Ir al curso →</span><span class="url" data-url="inv"></span></a>
   </div>
 </div></section>
@@ -281,13 +236,14 @@ footer .wrap{display:grid;gap:.35rem}
   <span>Competencias Humanas para el Futuro: docente Dra. Cristina Díaz de la Cruz. Evidencia trazable: adaptación de la guía 08 del curso Vibe Coding CEDIA 2026, autoría de Martha Vanessa Agila Palacios.</span>
 </div></footer>
 
+<script src="assets/progreso.js"></script>
 <script>
 (function(){
   "use strict";
   /* ===== Enlaces de los dos cursos: cámbielos aquí si las direcciones cambian ===== */
   var LINKS = {
-    chf: "https://rodri2265.github.io/UTE-2026/",
-    inv: "investigacion/index.html"
+    chf: "formacion.html",
+    inv: "investigacion.html"
   };
   document.querySelectorAll("[data-link]").forEach(function(a){
     if(a.getAttribute("href")!=="#acceso") { a.href = LINKS[a.dataset.link]; }
@@ -353,6 +309,15 @@ footer .wrap{display:grid;gap:.35rem}
     var why=first==="chf"?"Su interés está en llevar la DPI al aula. Después, la investigación les ayudará a respaldar su microproyecto con evidencia.":"Su interés está en la evidencia. Después, CHF les ayudará a convertir lo que encuentren en actividades para el aula.";
     res.innerHTML='<strong>Empiecen por '+name+'</strong><span>'+why+'</span><div style="display:flex;flex-wrap:wrap;gap:.5rem"><a class="btn '+(first==="chf"?"form":"inv")+'" href="'+LINKS[first]+'">Ir a '+name+'</a><a class="btn '+(first==="chf"?"inv":"form")+'" href="'+LINKS[first==="chf"?"inv":"chf"]+'">Ver '+other+'</a></div>';
   }
+  function paint(){
+    ["formacion","investigacion"].forEach(function(k){
+      var s=DPI.stats(k);
+      document.querySelectorAll('[data-pct="'+k+'"]').forEach(function(e){ e.textContent=s.pct+" %"; });
+      document.querySelectorAll('[data-bar="'+k+'"]').forEach(function(e){ e.style.width=s.pct+"%"; });
+      document.querySelectorAll('[data-last="'+k+'"]').forEach(function(e){ e.textContent = s.done ? (s.done+" de "+s.total+" actividades · última: "+new Date(s.last).toLocaleString("es-EC",{dateStyle:"medium",timeStyle:"short"})) : "Sin actividad todavía"; });
+    });
+  }
+  paint(); DPI.onChange(paint);
 })();
 </script>
 </body>

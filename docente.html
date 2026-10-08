@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Panel docente · Formar e investigar la DPI</title>
+<meta name="description" content="Consolida los registros de avance exportados por los estudiantes en las formaciones CHF y Evidencia trazable.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<style>
+.hero{padding-block:clamp(2rem,5vw,3.4rem)}
+.hero .wrap{display:grid;gap:1rem}
+.drop{border:2px dashed var(--rule);border-radius:16px;background:var(--surface);padding:1.6rem;display:grid;gap:.6rem;justify-items:center;text-align:center;transition:border-color .2s, background .2s}
+.drop.over{border-color:var(--form);background:var(--form-soft)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem}
+.kpi{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:1rem;display:grid;gap:.25rem}
+.kpi b{font-family:var(--f-display);font-weight:400;font-size:2rem;font-variant-numeric:tabular-nums;line-height:1}
+.kpi span{font-size:.85rem;color:var(--ink-2)}
+.cellbar{display:grid;gap:.25rem;min-width:120px}
+.cellbar .bar{height:7px}
+.ok-badge{color:var(--ok);font-weight:700} .bad-badge{color:var(--bad);font-weight:700}
+tr.sel td{background:var(--form-soft)}
+tbody tr{cursor:pointer}
+.tools{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between}
+.tools input{max-width:280px}
+.det{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.det .item{display:flex;justify-content:space-between;gap:.8rem;padding:.3rem 0;border-bottom:1px dashed var(--rule);font-size:.88rem}
+.det .item .st{white-space:nowrap;font-size:.78rem;color:var(--ink-2)}
+.det .item.done .st{color:var(--ok);font-weight:600}
+.det h4{margin:.7rem 0 .2rem;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.notes{display:grid;gap:.6rem}
+.notes blockquote{margin:0;padding:.6rem .8rem;border-left:3px solid var(--form);background:var(--sunk);border-radius:6px;font-size:.92rem;white-space:pre-wrap}
+@media (max-width:900px){ .kpis{grid-template-columns:repeat(2,minmax(0,1fr))} .det{grid-template-columns:minmax(0,1fr)} }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Formar e investigar la <b>DPI</b></a>
+  <nav aria-label="Sitio"><a href="index.html">Inicio</a><a href="formacion.html">Formación</a><a class="inv" href="investigacion.html">Investigación</a><a href="avance.html">Mi avance</a><a class="hide-sm" href="docente.html" aria-current="page">Docente</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">Para docentes</span>
+  <h1>Panel de seguimiento</h1>
+  <p class="muted">Descargue de la tarea del aula virtual los archivos <span class="mono">avance_dpi_….json</span> y cárguelos aquí. Los archivos se leen en este navegador y no se envían a ningún servidor.</p>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <label class="drop" id="drop" for="files">
+    <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="24" height="32" rx="3" fill="var(--surface)" stroke="var(--form)" stroke-width="2.5"/><path d="M16 16h12M16 22h12M16 28h8" stroke="var(--ink-2)" stroke-width="2"/><circle cx="34" cy="36" r="9" fill="var(--form)"/><path d="M34 31v10M29 36h10" stroke="var(--on-form)" stroke-width="2.5"/></svg>
+    <strong>Arrastre aquí los archivos de avance o haga clic para elegirlos</strong>
+    <span class="small muted">Puede cargar varios a la vez. Si un estudiante entrega dos archivos, se conserva el más reciente.</span>
+    <input id="files" type="file" accept=".json,application/json" multiple hidden>
+  </label>
+  <div class="kpis">
+    <div class="kpi"><b id="kN">0</b><span>estudiantes</span></div>
+    <div class="kpi"><b id="kF">–</b><span>avance promedio en Formación</span></div>
+    <div class="kpi"><b id="kI">–</b><span>avance promedio en Investigación</span></div>
+    <div class="kpi"><b id="kV">–</b><span>archivos verificados</span></div>
+  </div>
+  <div class="tools">
+    <input id="q" type="text" placeholder="Buscar por nombre o grupo" aria-label="Buscar">
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn form sm" type="button" id="csv">Exportar tabla (.csv)</button><button class="btn ghost sm" type="button" id="clr">Vaciar panel</button></div>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Estudiante</th><th>Grupo</th><th>Formación</th><th>Investigación</th><th>Última actividad</th><th>Exportado</th><th>Verificación</th></tr></thead>
+    <tbody id="tb"><tr><td colspan="7" class="muted">Todavía no hay archivos cargados.</td></tr></tbody>
+  </table></div>
+  <div id="detail"></div>
+  <p class="small muted">«Verificado» indica que el contenido coincide con la huella que el sitio calculó al exportar. Detecta ediciones manuales del archivo, pero no reemplaza la evaluación: las marcas son autodeclaradas por cada estudiante.</p>
+</div></section>
+
+<footer><div class="wrap"><span>Los datos cargados se quedan en esta pestaña y desaparecen al cerrarla.</span></div></footer>
+
+<script src="assets/progreso.js"></script>
+<script>
+(function(){
+  "use strict";
+  var recs={}, selKey=null;
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function fdate(iso){ if(!iso) return "—"; try{ return new Date(iso).toLocaleString("es-EC",{dateStyle:"medium",timeStyle:"short"}); }catch(e){ return iso; } }
+  function key(o){ return ((o.estudiante&&o.estudiante.id)||(o.estudiante&&o.estudiante.nombre)||"?").toLowerCase(); }
+
+  function addFiles(list){
+    var ps=Array.prototype.map.call(list,function(f){ return new Promise(function(res){ var r=new FileReader(); r.onload=function(){ try{ var o=JSON.parse(r.result); if(o.sitio!=="Formar e investigar la DPI") throw 0; DPI.verify(o).then(function(ok){ res({o:o,ok:ok,file:f.name}); }); }catch(e){ res({err:f.name}); } }; r.readAsText(f); }); });
+    Promise.all(ps).then(function(rs){
+      var bad=rs.filter(function(x){return x.err;}).map(function(x){return x.err;});
+      rs.forEach(function(x){ if(x.err) return; var k=key(x.o); if(!recs[k] || recs[k].o.generado < x.o.generado) recs[k]=x; });
+      render();
+      if(bad.length) document.getElementById("detail").innerHTML='<div class="card" style="border-color:var(--bad)"><strong>No se pudieron leer:</strong> '+bad.map(esc).join(", ")+'<span class="small muted">No son archivos de avance de este sitio.</span></div>';
+    });
+  }
+  function rowsArr(){ var q=document.getElementById("q").value.trim().toLowerCase(); return Object.keys(recs).map(function(k){return [k,recs[k]];}).filter(function(p){ var e=p[1].o.estudiante||{}; return !q || (e.nombre+" "+e.grupo+" "+e.id).toLowerCase().indexOf(q)>-1; }).sort(function(a,b){ return (a[1].o.estudiante.nombre||"").localeCompare(b[1].o.estudiante.nombre||""); }); }
+  function cell(track,o){ var s=DPI.stats(track,o); return '<div class="cellbar"><span class="mono">'+s.pct+' % · '+s.done+'/'+s.total+'</span><span class="bar '+(track==="formacion"?"form":"inv")+'"><i style="width:'+s.pct+'%"></i></span></div>'; }
+  function render(){
+    var all=Object.keys(recs).map(function(k){return recs[k];});
+    document.getElementById("kN").textContent=all.length;
+    function avg(t){ if(!all.length) return "–"; return Math.round(all.reduce(function(a,x){ return a+DPI.stats(t,x.o).pct; },0)/all.length)+" %"; }
+    document.getElementById("kF").textContent=avg("formacion"); document.getElementById("kI").textContent=avg("investigacion");
+    document.getElementById("kV").textContent=all.length?(all.filter(function(x){return x.ok;}).length+" de "+all.length):"–";
+    var rows=rowsArr(), tb=document.getElementById("tb");
+    if(!rows.length){ tb.innerHTML='<tr><td colspan="7" class="muted">'+(all.length?"Ningún estudiante coincide con la búsqueda.":"Todavía no hay archivos cargados.")+'</td></tr>'; return; }
+    tb.innerHTML=rows.map(function(p){ var o=p[1].o, e=o.estudiante||{}, sf=DPI.stats("formacion",o), si=DPI.stats("investigacion",o), last=[sf.last,si.last].filter(Boolean).sort().pop();
+      return '<tr data-k="'+esc(p[0])+'"'+(p[0]===selKey?' class="sel"':'')+'><td><strong>'+esc(e.nombre||"(sin nombre)")+'</strong><br><span class="small muted">'+esc(e.id)+'</span></td><td>'+esc(e.grupo)+'</td><td>'+cell("formacion",o)+'</td><td>'+cell("investigacion",o)+'</td><td class="num">'+fdate(last)+'</td><td class="num">'+fdate(o.generado)+'</td><td>'+(p[1].ok?'<span class="ok-badge">✓ verificado</span>':'<span class="bad-badge">✕ editado o dañado</span>')+'</td></tr>'; }).join("");
+  }
+  function detail(k){
+    var x=recs[k]; if(!x) return; var o=x.o;
+    function list(track){ var groups={},order=[]; DPI.CATALOG[track].forEach(function(it){ if(!groups[it.group]){groups[it.group]=[];order.push(it.group);} groups[it.group].push(it); });
+      return order.map(function(g){ return '<h4>'+esc(g)+'</h4>'+groups[g].map(function(it){ var r=o[track]&&o[track][it.id]; return '<div class="item'+(r?' done':'')+'"><span>'+esc(it.label)+'</span><span class="st">'+(r?'✓ '+fdate(r.at):'pendiente')+'</span></div>'; }).join(""); }).join(""); }
+    var notes=Object.keys(o.notas||{}).filter(function(n){ return o.notas[n].t; }).map(function(n){ var lbl=n.replace(/^f-u(\d)-ref$/,"Reflexión · Unidad $1").replace(/^f-mp-(\d)$/,function(m,i){ return "Microproyecto · "+DPI.MICROPROYECTO[i-1]; }); return '<div><span class="small muted">'+esc(lbl)+' · '+fdate(o.notas[n].at)+'</span><blockquote>'+esc(o.notas[n].t)+'</blockquote></div>'; }).join("");
+    document.getElementById("detail").innerHTML='<div class="card"><div class="tools"><h3>'+esc(o.estudiante.nombre)+'</h3><span class="small muted">Archivo: '+esc(x.file)+'</span></div><div class="det"><div><span class="chip form">Formación</span>'+list("formacion")+'</div><div><span class="chip inv">Investigación</span>'+list("investigacion")+'</div></div>'+(notes?'<span class="eyebrow">Reflexiones y borrador</span><div class="notes">'+notes+'</div>':'<span class="small muted">Sin reflexiones registradas.</span>')+'</div>';
+  }
+  var drop=document.getElementById("drop"), inp=document.getElementById("files");
+  inp.addEventListener("change",function(){ addFiles(inp.files); inp.value=""; });
+  ["dragenter","dragover"].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.add("over"); }); });
+  ["dragleave","drop"].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.remove("over"); }); });
+  drop.addEventListener("drop",function(e){ if(e.dataTransfer.files.length) addFiles(e.dataTransfer.files); });
+  document.getElementById("tb").addEventListener("click",function(e){ var tr=e.target.closest("tr[data-k]"); if(!tr) return; selKey=tr.dataset.k; render(); detail(selKey); });
+  document.getElementById("q").addEventListener("input",render);
+  document.getElementById("clr").addEventListener("click",function(){ recs={}; selKey=null; document.getElementById("detail").innerHTML=""; render(); });
+  document.getElementById("csv").addEventListener("click",function(){
+    var head=["nombre","identificador","grupo","formacion_pct","formacion_hechas","formacion_total","investigacion_pct","investigacion_hechas","investigacion_total","ultima_actividad","exportado","verificado"];
+    var lines=[head].concat(rowsArr().map(function(p){ var o=p[1].o,e=o.estudiante||{},f=DPI.stats("formacion",o),i=DPI.stats("investigacion",o); return [e.nombre,e.id,e.grupo,f.pct,f.done,f.total,i.pct,i.done,i.total,[f.last,i.last].filter(Boolean).sort().pop()||"",o.generado,p[1].ok?"si":"no"]; }));
+    DPI.download("seguimiento_dpi.csv","﻿"+lines.map(function(r){ return r.map(function(c){ return '"'+String(c==null?"":c).replace(/"/g,'""')+'"'; }).join(","); }).join("\n"),"text/csv");
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Competencias Humanas para el Futuro · Formar la DPI</title>
+<meta name="description" content="Formación docente CHF: cuatro unidades para desarrollar la competencia genérica UTPL Desarrollo Personal Integral, con registro de avance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<style>
+.hero{padding-block:clamp(2rem,5vw,3.8rem)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:2rem;align-items:end}
+.hero .lede{font-size:1.15rem;color:var(--ink-2)}
+.status{display:grid;gap:.5rem}
+.status b{font-family:var(--f-display);font-weight:400;font-size:2.4rem;color:var(--form);font-variant-numeric:tabular-nums;line-height:1}
+.note{background:var(--form-soft);border-radius:12px;padding:.8rem 1rem;font-size:.92rem;max-width:none}
+.units{display:grid;gap:1rem}
+details.unit{background:var(--surface);border:1px solid var(--rule);border-radius:18px;overflow:hidden}
+details.unit > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:1.1rem;align-items:center;padding:1.1rem 1.3rem}
+details.unit > summary::-webkit-details-marker{display:none}
+.unum{width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;background:var(--form);color:var(--on-form);font-family:var(--f-display);font-size:1.4rem}
+.utitle{display:grid;gap:.2rem;min-width:0}
+.utitle h3{font-size:1.25rem}
+.uprog{display:grid;gap:.3rem;justify-items:end;min-width:110px;font-size:.8rem;color:var(--ink-2)}
+.uprog .bar{width:110px}
+details.unit[open] > summary{border-bottom:1px solid var(--rule)}
+.ubody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.3rem;padding:1.2rem 1.3rem 1.4rem}
+.ubody .col{display:grid;gap:.7rem;align-content:start;min-width:0}
+.tag-cal{display:inline-flex;gap:.35rem;font-size:.78rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;background:var(--mark);color:var(--mark-ink)}
+.tag-free{display:inline-flex;font-size:.78rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;background:var(--sunk);color:var(--ink-2)}
+.mp{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);gap:1.2rem}
+.mp-fields{display:grid;gap:.9rem}
+.mp-fields .field small{font-weight:400;color:var(--ink-2)}
+.mp-side{display:grid;gap:1rem;align-content:start}
+.bridge{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:1rem;align-items:center;background:var(--mark-soft);border:1px solid var(--rule);border-radius:16px;padding:1.1rem 1.3rem}
+.bridge svg{width:56px;height:56px}
+.res{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.7rem;list-style:none;padding:0}
+.res li{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:.8rem .9rem;font-size:.92rem;display:grid;gap:.2rem}
+.evs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem}
+.ev{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:1rem;display:grid;gap:.4rem;align-content:start}
+.ev b{font-family:var(--f-display);font-weight:400;font-size:2rem;color:var(--form);line-height:1}
+@media (max-width:900px){
+  .hero .wrap,.ubody,.mp,.bridge{grid-template-columns:minmax(0,1fr)}
+  .evs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  details.unit > summary{grid-template-columns:auto minmax(0,1fr)}
+  .uprog{grid-column:1 / -1;justify-items:start}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Formar e investigar la <b>DPI</b></a>
+  <nav aria-label="Sitio"><a href="index.html">Inicio</a><a href="formacion.html" aria-current="page">Formación</a><a class="inv" href="investigacion.html">Investigación</a><a href="avance.html">Mi avance</a><a class="hide-sm" href="docente.html">Docente</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div style="display:grid;gap:1rem">
+    <span class="eyebrow">Formar la competencia · CHF · UTPL · edición septiembre 2026</span>
+    <h1>Competencias Humanas para el Futuro</h1>
+    <p class="lede">Cuatro unidades para llevar la competencia genérica <strong>Desarrollo Personal Integral</strong> y las demás competencias humanas a su asignatura, hasta diseñar un microproyecto docente integrador.</p>
+    <p class="note">Este sitio registra <strong>su avance personal</strong>. Las entregas y calificaciones se gestionan únicamente en el aula virtual (EVA).</p>
+  </div>
+  <div class="card status">
+    <span class="eyebrow">Mi avance en Formación</span>
+    <b data-pct="formacion">0 %</b>
+    <div class="bar lg form"><i data-bar="formacion" style="width:0%"></i></div>
+    <span class="muted small" data-last="formacion">Sin actividad todavía</span>
+    <a class="btn ghost sm" href="avance.html" style="justify-self:start">Exportar mi avance</a>
+  </div>
+</div></section>
+
+<section class="block" id="unidades"><div class="wrap">
+  <div class="head"><span class="eyebrow">Ruta formativa</span><h2>Unidades</h2>
+    <p class="muted">Marquen cada contenido cuando lo hayan revisado en el EVA y escriban una reflexión breve al cierre de la unidad. La fecha de cada marca queda en su registro.</p></div>
+  <div class="units" id="units"></div>
+</div></section>
+
+<section class="block" id="microproyecto"><div class="wrap">
+  <div class="head"><span class="eyebrow">Unidad 4 · Producto final (40 %)</span><h2>Borrador del microproyecto docente integrador</h2>
+    <p class="muted">Propuesta breve (5–8 páginas o presentación equivalente) que se sube al EVA y se presenta a los compañeros en la sesión final. Usen este borrador para organizar sus ideas: se guarda en este navegador y pueden descargarlo.</p></div>
+  <div class="mp">
+    <div class="card mp-fields" id="mpFields"></div>
+    <div class="mp-side">
+      <div class="card">
+        <span class="eyebrow">Antes de entregar · criterios de evaluación</span>
+        <div id="crit"></div>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Borrador</span>
+        <p class="small muted">Componentes completos: <strong id="mpCount">0 de 7</strong></p>
+        <button class="btn form sm" type="button" id="mpDl" style="justify-self:start">Descargar borrador (.md)</button>
+      </div>
+    </div>
+  </div>
+  <div class="bridge">
+    <svg viewBox="0 0 56 56" aria-hidden="true"><rect x="6" y="6" width="30" height="40" rx="3" fill="var(--surface)" stroke="var(--mark-ink)" stroke-width="2.5"/><rect x="11" y="18" width="20" height="6" fill="var(--mark)"/><circle cx="38" cy="38" r="10" fill="none" stroke="var(--mark-ink)" stroke-width="3.5"/><path d="M45 45l7 7" stroke="var(--mark-ink)" stroke-width="4" stroke-linecap="round"/></svg>
+    <div><strong>Respalden su metodología con evidencia.</strong> <span class="muted">En la formación de investigación aprenderán a construir una síntesis en la que cada afirmación se rastrea hasta su fuente, por ejemplo los programas de competencias emocionales en educación superior <span class="cite">[F06, p. 1]</span>.</span></div>
+    <a class="btn inv sm" href="investigacion.html">Ir a Investigación →</a>
+  </div>
+</div></section>
+
+<section class="block" id="evaluacion"><div class="wrap">
+  <div class="head"><span class="eyebrow">Evaluación</span><h2>Componentes de la nota</h2>
+    <p class="muted">Marquen cada componente cuando lo hayan entregado en el aula virtual. Esta marca es un recordatorio personal: no entrega ni registra nada en el sistema académico.</p></div>
+  <div class="evs" id="evs"></div>
+</div></section>
+
+<section class="block" id="recursos"><div class="wrap">
+  <div class="head"><span class="eyebrow">Recursos</span><h2>Lecturas y materiales</h2><p class="muted">El material de cada sesión se publica en el aula virtual.</p></div>
+  <ul class="res">
+    <li><span class="eyebrow">En el EVA</span>Rielo, F. <em>Concepción mística de la antropología</em> (lectura recomendada)</li>
+    <li><span class="eyebrow">En el EVA</span>Diccionario o glosario avanzado del pensamiento de Fernando Rielo</li>
+    <li><span class="eyebrow">En el EVA</span>Guía del curso CHF (versión actualizada)</li>
+    <li><span class="eyebrow">En el EVA · en construcción</span>NotebookLM del Modelo Educativo UTPL</li>
+    <li><span class="eyebrow">En el EVA · Unidad 3</span>Casos prácticos (PDF)</li>
+    <li><span class="eyebrow">Unidad 2</span>Marcos de referencia: UNESCO, Foro Económico Mundial, OCDE y Proyecto Tuning</li>
+  </ul>
+</div></section>
+
+<footer><div class="wrap">
+  <span>Competencias Humanas para el Futuro · docente Dra. Cristina Díaz de la Cruz · UTPL · 2026. Contenidos tomados del sitio del curso CHF.</span>
+  <span>El avance se guarda solo en este navegador. Exporte su registro en «Mi avance».</span>
+</div></footer>
+
+<script src="assets/progreso.js"></script>
+<script>
+(function(){
+  "use strict";
+  var META = {
+    u1:{fecha:"Martes 8 de septiembre de 2026", ses:"Sesión presencial y taller grupal · 09:00 a 12:30 · Centro de Convenciones", cal:null, q:"¿Qué rasgo del humanismo integral reconoce hoy en su asignatura y cuál le falta?"},
+    u2:{fecha:"Miércoles 9 de septiembre de 2026", ses:"Sesión presencial y taller grupal · 09:00 a 12:30 · Centro de Convenciones", cal:null, q:"¿Qué niveles o ámbitos de la DPI trabaja más en su asignatura y cuáles casi no aparecen?"},
+    u3:{fecha:"Jueves 10 de septiembre de 2026", ses:"Sesión presencial y taller de construcción de rúbricas · 09:00 a 12:30 · Centro de Convenciones", cal:"Taller de rúbricas · 20 %", q:"¿Qué evidencia le mostraría que un estudiante progresó en la DPI?"},
+    u4:{fecha:"Sábado 12 de septiembre de 2026", ses:"Sesión presencial y entrega del microproyecto · 15:00 a 18:00 · Centro de Convenciones / EVA", cal:"Microproyecto · 40 %", q:"¿Cómo asegura su propuesta la transversalidad y la progresión de la competencia?"}
+  };
+  function fmt(iso){ try{ return new Date(iso).toLocaleDateString("es-EC",{day:"numeric",month:"short"}); }catch(e){ return ""; } }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+  /* unidades */
+  var unitsEl=document.getElementById("units");
+  DPI.UNIDADES.forEach(function(u,ix){
+    var m=META[u.id], d=document.createElement("details"); d.className="unit"; if(ix===0) d.open=true;
+    var rows=u.c.map(function(c,i){ var id="f-"+u.id+"-c"+(i+1); return '<label class="checkrow"><input type="checkbox" data-id="'+id+'"><span>'+esc(c)+'</span><span class="when" data-when="'+id+'"></span></label>'; }).join("");
+    d.innerHTML='<summary><span class="unum">'+(ix+1)+'</span><span class="utitle"><span class="eyebrow">'+m.fecha+'</span><h3>'+esc(u.t.replace(/^Unidad \d · /,""))+'</h3><span class="small muted">'+m.ses+'</span></span>'+
+      '<span class="uprog"><span data-u="'+u.id+'">0 de '+(u.c.length+1)+'</span><span class="bar form"><i data-ubar="'+u.id+'" style="width:0%"></i></span></span></summary>'+
+      '<div class="ubody"><div class="col"><div style="display:flex;gap:.5rem;flex-wrap:wrap">'+(m.cal?'<span class="tag-cal">'+m.cal+'</span>':'<span class="tag-free">Taller formativo, no calificado</span>')+'</div><span class="eyebrow">Contenidos</span><div>'+rows+'</div></div>'+
+      '<div class="col"><span class="eyebrow">Reflexión de la unidad</span><label class="field" for="ref-'+u.id+'">'+esc(m.q)+'<textarea id="ref-'+u.id+'" data-ref="'+u.id+'" placeholder="Escriban al menos dos frases."></textarea></label><span class="saved" data-saved="'+u.id+'"></span>'+
+      '<p class="small muted">Pregunta propuesta por este sitio. La invitación a la reflexión oficial de la unidad está en el EVA.</p></div></div>';
+    unitsEl.appendChild(d);
+  });
+  unitsEl.addEventListener("change",function(e){ var id=e.target.dataset.id; if(id) DPI.mark("formacion",id,e.target.checked); });
+  var timers={};
+  unitsEl.addEventListener("input",function(e){
+    var u=e.target.dataset.ref; if(!u) return;
+    clearTimeout(timers[u]); timers[u]=setTimeout(function(){
+      var v=e.target.value.trim(); DPI.note("f-"+u+"-ref",v); DPI.mark("formacion","f-"+u+"-ref", v.length>=40);
+      document.querySelector('[data-saved="'+u+'"]').textContent = v.length>=40 ? "Guardado ✓ · cuenta como reflexión completa" : (v ? "Guardado · escriban un poco más (mínimo 40 caracteres)" : "");
+    },500);
+  });
+  DPI.UNIDADES.forEach(function(u){ var t=document.getElementById("ref-"+u.id); t.value=DPI.note("f-"+u.id+"-ref")||""; });
+
+  /* microproyecto */
+  var HINT=["Asignatura, nivel y aporte a los perfiles profesional y de egreso.","Copien el resultado de aprendizaje del plan docente.","Por ejemplo, Desarrollo Personal Integral.","Qué harán los estudiantes y cómo se integran el componente específico y el genérico.","Qué metodología activa usarán y por qué.","Qué productos o desempeños mostrarán el logro.","Instrumento, criterios y cómo darán retroalimentación."];
+  var mpEl=document.getElementById("mpFields");
+  DPI.MICROPROYECTO.forEach(function(c,i){
+    var id="f-mp-"+(i+1), lab=document.createElement("label"); lab.className="field"; lab.setAttribute("for","mp"+(i+1));
+    lab.innerHTML=(i+1)+'. '+esc(c)+' <small>'+HINT[i]+'</small><textarea id="mp'+(i+1)+'" data-mp="'+(i+1)+'"></textarea>';
+    mpEl.appendChild(lab); lab.querySelector("textarea").value=DPI.note(id)||"";
+  });
+  var mpT={};
+  mpEl.addEventListener("input",function(e){ var k=e.target.dataset.mp; if(!k) return; clearTimeout(mpT[k]); mpT[k]=setTimeout(function(){ var v=e.target.value.trim(); DPI.note("f-mp-"+k,v); DPI.mark("formacion","f-mp-"+k, v.length>=20); },500); });
+  var CR=["Articulación clara entre el resultado de aprendizaje y la competencia genérica","Metodología activa pertinente y coherente","Actividad integradora realista, motivadora y alineada al modelo UTPL, con evidencias de calidad","Rúbrica o instrumento sólido y aplicable","Reflexión sobre transversalidad y progresividad","Conocimientos, habilidades, actitudes y valores (C-H-A-V) y un criterio integrador","Integración de teoría, práctica, interacción y significado"];
+  document.getElementById("crit").innerHTML=CR.map(function(c,i){ return '<label class="checkrow"><input type="checkbox" data-cr="'+i+'"><span class="small">'+c+'</span></label>'; }).join("");
+  var crKey="dpi-criterios"; var crs={}; try{ crs=JSON.parse(localStorage.getItem(crKey)||"{}"); }catch(e){}
+  document.querySelectorAll("[data-cr]").forEach(function(x){ x.checked=!!crs[x.dataset.cr]; x.addEventListener("change",function(){ crs[x.dataset.cr]=x.checked; try{ localStorage.setItem(crKey,JSON.stringify(crs)); }catch(e){} }); });
+  document.getElementById("mpDl").addEventListener("click",function(){
+    var s=DPI.load().estudiante, md="# Borrador del microproyecto docente integrador\n\n"+(s.nombre?"**Autor/a:** "+s.nombre+"\n\n":"")+"_Generado el "+new Date().toLocaleString("es-EC")+"_\n\n";
+    DPI.MICROPROYECTO.forEach(function(c,i){ md+="## "+(i+1)+". "+c+"\n\n"+(DPI.note("f-mp-"+(i+1))||"_Pendiente_")+"\n\n"; });
+    DPI.download("microproyecto_borrador.md", md, "text/markdown");
+  });
+
+  /* evaluación */
+  var PCT={taller:"20 %",micro:"40 %",examen:"20 %",foro:"20 %"}, MOD={taller:"Grupal · Unidad 3",micro:"Individual · Unidad 4",examen:"Individual · fecha en el EVA",foro:"Individual · fecha en el EVA"};
+  document.getElementById("evs").innerHTML=DPI.EVALUACION.map(function(e){ var id="f-ev-"+e[0]; return '<div class="ev"><b>'+PCT[e[0]]+'</b><strong>'+esc(e[1].replace(/ \(\d+ %\)/,""))+'</strong><span class="small muted">'+MOD[e[0]]+'</span><label class="checkrow" style="border:0;padding-bottom:0"><input type="checkbox" data-id="'+id+'"><span class="small">Lo entregué en el aula virtual</span></label><span class="when small" data-when="'+id+'"></span></div>'; }).join("");
+  document.getElementById("evs").addEventListener("change",function(e){ var id=e.target.dataset.id; if(id) DPI.mark("formacion",id,e.target.checked); });
+
+  /* pintar estado */
+  function paint(){
+    var d=DPI.load();
+    document.querySelectorAll("input[data-id]").forEach(function(x){ x.checked=!!d.formacion[x.dataset.id]; });
+    document.querySelectorAll("[data-when]").forEach(function(x){ var r=d.formacion[x.dataset.when]; x.textContent=r?("✓ "+fmt(r.at)):""; });
+    DPI.UNIDADES.forEach(function(u){
+      var ids=u.c.map(function(c,i){return "f-"+u.id+"-c"+(i+1);}).concat(["f-"+u.id+"-ref"]), n=ids.filter(function(id){return d.formacion[id];}).length;
+      document.querySelector('[data-u="'+u.id+'"]').textContent=n+" de "+ids.length;
+      document.querySelector('[data-ubar="'+u.id+'"]').style.width=Math.round(n*100/ids.length)+"%";
+    });
+    var mp=DPI.MICROPROYECTO.filter(function(c,i){return d.formacion["f-mp-"+(i+1)];}).length; document.getElementById("mpCount").textContent=mp+" de 7";
+    var s=DPI.stats("formacion");
+    document.querySelectorAll('[data-pct="formacion"]').forEach(function(e){ e.textContent=s.pct+" %"; });
+    document.querySelectorAll('[data-bar="formacion"]').forEach(function(e){ e.style.width=s.pct+"%"; });
+    document.querySelectorAll('[data-last="formacion"]').forEach(function(e){ e.textContent=s.done?(s.done+" de "+s.total+" actividades · última: "+new Date(s.last).toLocaleString("es-EC",{dateStyle:"medium",timeStyle:"short"})):"Sin actividad todavía"; });
+  }
+  paint(); DPI.onChange(paint);
+})();
+</script>
+</body>
+</html>

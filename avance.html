@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi avance · Formar e investigar la DPI</title>
+<meta name="description" content="Registro personal de avance en las formaciones CHF y Evidencia trazable, con exportación para el aula virtual.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<style>
+.hero{padding-block:clamp(2rem,5vw,3.4rem)}
+.hero .wrap{display:grid;gap:1rem}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.idform{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}
+.sum .top-row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}
+.sum b{font-family:var(--f-display);font-weight:400;font-size:2.4rem;font-variant-numeric:tabular-nums;line-height:1}
+.sum.form b{color:var(--form)}
+.group{display:grid;gap:.1rem}
+.group h4{margin:.8rem 0 .2rem;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.item{display:flex;justify-content:space-between;gap:.8rem;padding:.35rem 0;border-bottom:1px dashed var(--rule);font-size:.92rem}
+.item .st{white-space:nowrap;font-size:.8rem;color:var(--ink-2)}
+.item.done .st{color:var(--ok);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.confirm{display:none;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--bad-soft);border-radius:12px;padding:.7rem .9rem}
+.confirm.on{display:flex}
+.steps{counter-reset:s;list-style:none;padding:0;display:grid;gap:.6rem}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2rem minmax(0,1fr);gap:.6rem;align-items:start}
+.steps li::before{content:counter(s);width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;background:var(--form);color:var(--on-form);font-family:var(--f-display)}
+@media (max-width:900px){ .grid2,.idform{grid-template-columns:minmax(0,1fr)} }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Formar e investigar la <b>DPI</b></a>
+  <nav aria-label="Sitio"><a href="index.html">Inicio</a><a href="formacion.html">Formación</a><a class="inv" href="investigacion.html">Investigación</a><a href="avance.html" aria-current="page">Mi avance</a><a class="hide-sm" href="docente.html">Docente</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">Registro personal</span>
+  <h1>Mi avance</h1>
+  <p class="muted">Aquí se reúne lo que marcó en Formación e Investigación, con la fecha de cada actividad. Todo se guarda solo en este navegador: si cambia de computadora o borra los datos de navegación, use «Restaurar» con su último archivo exportado.</p>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <div class="head"><span class="eyebrow">Paso 1</span><h2>Identificación</h2><p class="muted small">Se incluye en el archivo que exporta, para que su docente sepa de quién es. No se envía a ningún servidor.</p></div>
+  <form class="card idform" id="idf" autocomplete="on">
+    <label class="field" for="nom">Nombre completo<input id="nom" type="text" autocomplete="name" placeholder="Nombre y apellidos"></label>
+    <label class="field" for="ide">Correo institucional o código<input id="ide" type="text" autocomplete="email" placeholder="usuario@utpl.edu.ec"></label>
+    <label class="field" for="gru">Paralelo o grupo<input id="gru" type="text" placeholder="Por ejemplo, Paralelo A · Pareja 3"></label>
+    <span class="saved" id="idSaved" style="grid-column:1 / -1"></span>
+  </form>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <div class="head"><span class="eyebrow">Paso 2</span><h2>Resumen y detalle</h2></div>
+  <div class="grid2">
+    <div class="card sum form"><div class="top-row"><span class="chip form">Formar · CHF</span><b data-pct="formacion">0 %</b></div><div class="bar lg form"><i data-bar="formacion" style="width:0%"></i></div><span class="small muted" data-last="formacion"></span><div id="detF"></div><a class="btn ghost sm" href="formacion.html" style="justify-self:start">Ir a Formación</a></div>
+    <div class="card sum inv"><div class="top-row"><span class="chip inv">Investigar · Evidencia trazable</span><b data-pct="investigacion">0 %</b></div><div class="bar lg inv"><i data-bar="investigacion" style="width:0%"></i></div><span class="small muted" data-last="investigacion"></span><div id="detI"></div><a class="btn ghost sm" href="investigacion.html" style="justify-self:start">Ir a Investigación</a></div>
+  </div>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <div class="head"><span class="eyebrow">Paso 3</span><h2>Exportar y entregar</h2></div>
+  <ol class="steps">
+    <li><span>Pulse <strong>Exportar mi avance</strong>. Se descarga un archivo <span class="mono">avance_dpi_….json</span> con sus marcas, fechas y reflexiones.</span></li>
+    <li><span>Súbalo a la tarea que indique su docente en el aula virtual.</span></li>
+    <li><span>Su docente lo carga en el panel docente, que verifica que el archivo no se haya editado a mano.</span></li>
+  </ol>
+  <div class="card">
+    <div class="actions">
+      <button class="btn form" type="button" id="exp">Exportar mi avance (.json)</button>
+      <button class="btn ghost" type="button" id="expCsv">Descargar resumen (.csv)</button>
+      <label class="btn ghost" for="imp" style="cursor:pointer">Restaurar desde archivo</label><input id="imp" type="file" accept=".json,application/json" hidden>
+      <button class="btn danger" type="button" id="rst">Borrar mi avance</button>
+    </div>
+    <div class="confirm" id="cfm" role="alert"><span>¿Borrar todo su avance de este navegador? Exporte antes si quiere conservarlo.</span><button class="btn danger sm" type="button" id="cfmYes">Sí, borrar</button><button class="btn ghost sm" type="button" id="cfmNo">Cancelar</button></div>
+    <span class="saved" id="expMsg" aria-live="polite"></span>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>El registro es personal y orientativo. Las entregas y calificaciones oficiales están en el aula virtual.</span></div></footer>
+
+<script src="assets/progreso.js"></script>
+<script>
+(function(){
+  "use strict";
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function fdate(iso){ try{ return new Date(iso).toLocaleString("es-EC",{dateStyle:"medium",timeStyle:"short"}); }catch(e){ return iso; } }
+  var nom=document.getElementById("nom"), ide=document.getElementById("ide"), gru=document.getElementById("gru");
+  var st=DPI.load().estudiante; nom.value=st.nombre||""; ide.value=st.id||""; gru.value=st.grupo||"";
+  var tm; document.getElementById("idf").addEventListener("input",function(){ clearTimeout(tm); tm=setTimeout(function(){ DPI.setStudent({nombre:nom.value.trim(),id:ide.value.trim(),grupo:gru.value.trim()}); document.getElementById("idSaved").textContent="Guardado ✓"; },400); });
+  document.getElementById("idf").addEventListener("submit",function(e){ e.preventDefault(); });
+
+  function detail(track){
+    var d=DPI.load(), groups={}, order=[];
+    DPI.CATALOG[track].forEach(function(it){ if(!groups[it.group]){ groups[it.group]=[]; order.push(it.group); } groups[it.group].push(it); });
+    return order.map(function(g){
+      var items=groups[g], n=items.filter(function(it){return d[track][it.id];}).length;
+      return '<div class="group"><h4>'+esc(g)+' · '+n+'/'+items.length+'</h4>'+items.map(function(it){ var r=d[track][it.id]; return '<div class="item'+(r?' done':'')+'"><span>'+esc(it.label)+'</span><span class="st">'+(r?'✓ '+fdate(r.at):'pendiente')+'</span></div>'; }).join("")+'</div>';
+    }).join("");
+  }
+  function paint(){
+    ["formacion","investigacion"].forEach(function(k){
+      var s=DPI.stats(k);
+      document.querySelector('[data-pct="'+k+'"]').textContent=s.pct+" %";
+      document.querySelector('[data-bar="'+k+'"]').style.width=s.pct+"%";
+      document.querySelector('[data-last="'+k+'"]').textContent=s.done?(s.done+" de "+s.total+" actividades · última: "+fdate(s.last)):"Sin actividad todavía";
+    });
+    document.getElementById("detF").innerHTML=detail("formacion");
+    document.getElementById("detI").innerHTML=detail("investigacion");
+  }
+  paint(); DPI.onChange(paint);
+
+  var msg=document.getElementById("expMsg");
+  function slug(s){ return (s||"sin_nombre").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^A-Za-z0-9]+/g,"_").replace(/^_|_$/g,"").toLowerCase(); }
+  document.getElementById("exp").addEventListener("click",function(){
+    var s=DPI.load().estudiante;
+    if(!s.nombre){ msg.style.color="var(--bad)"; msg.textContent="Escriba su nombre en el paso 1 antes de exportar."; nom.focus(); return; }
+    DPI.exportData().then(function(p){
+      var day=new Date().toISOString().slice(0,10);
+      DPI.download("avance_dpi_"+slug(s.nombre)+"_"+day+".json", JSON.stringify(p,null,2));
+      msg.style.color="var(--ok)"; msg.textContent="Archivo exportado. Súbalo a la tarea del aula virtual.";
+    });
+  });
+  document.getElementById("expCsv").addEventListener("click",function(){
+    var d=DPI.load(), rows=[["formacion","grupo","actividad","estado","fecha"]];
+    ["formacion","investigacion"].forEach(function(k){ DPI.CATALOG[k].forEach(function(it){ var r=d[k][it.id]; rows.push([k,it.group,it.label,r?"completada":"pendiente",r?r.at:""]); }); });
+    var csv="﻿"+rows.map(function(r){ return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(","); }).join("\n");
+    DPI.download("resumen_avance_dpi.csv",csv,"text/csv");
+  });
+  document.getElementById("imp").addEventListener("change",function(e){
+    var f=e.target.files[0]; if(!f) return; var rd=new FileReader();
+    rd.onload=function(){ try{ var o=JSON.parse(rd.result); DPI.verify(o).then(function(ok){ DPI.importOwn(o); nom.value=o.estudiante.nombre||""; ide.value=o.estudiante.id||""; gru.value=o.estudiante.grupo||""; msg.style.color=ok?"var(--ok)":"var(--bad)"; msg.textContent=ok?"Avance restaurado.":"Avance restaurado, pero el archivo no pasó la verificación: puede haber sido editado."; }); }catch(err){ msg.style.color="var(--bad)"; msg.textContent="El archivo no es un registro de avance válido."; } };
+    rd.readAsText(f); e.target.value="";
+  });
+  var cfm=document.getElementById("cfm");
+  document.getElementById("rst").addEventListener("click",function(){ cfm.classList.add("on"); });
+  document.getElementById("cfmNo").addEventListener("click",function(){ cfm.classList.remove("on"); });
+  document.getElementById("cfmYes").addEventListener("click",function(){ DPI.reset(); cfm.classList.remove("on"); nom.value=ide.value=gru.value=""; msg.style.color="var(--ink-2)"; msg.textContent="Avance borrado."; });
+})();
+</script>
+</body>
+</html>
